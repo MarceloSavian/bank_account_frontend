@@ -22,6 +22,21 @@ const actions = {
                     dispatch('alert/error', error, { root: true });
                 }
             );
+    },
+    getMovement({ dispatch, commit }) {
+        commit('getMovementRequest');
+        
+        return movementService.getMovement()
+            .then(
+                movement => {
+                    commit('getMovementSuccess', movement);
+                    return movement
+                },
+                error => {
+                    commit('getMovementFailure', error);
+                    dispatch('alert/error', error, { root: true });
+                }
+            );
     }
 };
 

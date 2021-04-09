@@ -54,7 +54,6 @@ export default {
     handleSubmit() {
       this.submitted = true
       const { email, password } = this.model
-      console.log(email, password)
       if (email && password) {
         this.login({ email, password })
       }

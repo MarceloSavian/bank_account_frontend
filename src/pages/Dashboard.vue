@@ -59,7 +59,7 @@
             {{ $t('dashboard.usersTable.title') }}
           </h4>
           <div class="table-responsive">
-            <user-table></user-table>
+            <user-table :data="userTable.data"></user-table>
           </div>
         </card>
       </div>
@@ -80,26 +80,13 @@ export default {
   },
   data() {
     return {
+      userTable: { data: [] },
       balance: 0,
       bigLineChart: {
-        allData: [[100, 70, 90, 70, 85, 60, 75, 60, 90, 80, 110, 100]],
+        allData: [],
         activeIndex: 0,
         chartData: {
-          datasets: [{}],
-          labels: [
-            'JAN',
-            'FEB',
-            'MAR',
-            'APR',
-            'MAY',
-            'JUN',
-            'JUL',
-            'AUG',
-            'SEP',
-            'OCT',
-            'NOV',
-            'DEC'
-          ]
+          datasets: [{}]
         },
         extraOptions: chartConfigs.purpleChartOptions,
         gradientColors: config.colors.primaryGradient,
@@ -121,6 +108,7 @@ export default {
   },
   methods: {
     ...mapActions('accounts', ['getAccount']),
+    ...mapActions('movements', ['getMovement']),
     getAccountRequest() {
       this.getAccount()
     },
@@ -144,18 +132,26 @@ export default {
           }
         ],
         labels: [
-          'JAN',
-          'FEB',
-          'MAR',
-          'APR',
-          'MAY',
-          'JUN',
-          'JUL',
-          'AUG',
-          'SEP',
-          'OCT',
-          'NOV',
-          'DEC'
+          '',
+          '',
+          '',
+          '',
+          '',
+          '',
+          '',
+          '',
+          '',
+          '',
+          '',
+          '',
+          '',
+          '',
+          '',
+          '',
+          '',
+          '',
+          '',
+          ''
         ]
       }
       this.$refs.bigChart.updateGradients(chartData)
@@ -166,6 +162,18 @@ export default {
   created() {
     this.getAccount().then((data) => {
       this.balance = data.balance
+    })
+    this.getMovement().then((data) => {
+      console.log(data)
+      const array = data.map((e) => e.value)
+      this.bigLineChart.allData = [array]
+      const arrayGrid = data.map((e) => ({
+        value: e.value,
+        name: e.movementType?.name,
+        type: e.movementType?.type
+      }))
+      this.userTable.data = arrayGrid
+      this.initBigChart(0)
     })
   },
   mounted() {

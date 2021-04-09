@@ -3,7 +3,8 @@ import { authHeader } from '../helpers/auth-header';
 import { handleResponse } from './user.service';
 
 export const movementService = {
-    postMovement
+    postMovement,
+    getMovement
 };
 
 function postMovement(value, movementType) {
@@ -17,6 +18,22 @@ function postMovement(value, movementType) {
     };
 
     return fetch(`${config.apiUrl}/movement`, requestOptions)
+        .then(handleResponse)
+        .then(user => {
+            return user;
+        });
+}
+
+function getMovement() {
+    const requestOptions = {
+        method: 'GET',
+        headers: { 
+            'Content-Type': 'application/json',
+            ...authHeader()
+        }
+    };
+
+    return fetch(`${config.apiUrl}/movements`, requestOptions)
         .then(handleResponse)
         .then(user => {
             return user;
