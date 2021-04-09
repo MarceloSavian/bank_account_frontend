@@ -70,7 +70,6 @@
 import LineChart from '@/components/Charts/LineChart'
 import BarChart from '@/components/Charts/BarChart'
 import * as chartConfigs from '@/components/Charts/config'
-import TaskList from './Dashboard/TaskList'
 import UserTable from './Dashboard/UserTable'
 import config from '@/config'
 import { mapActions } from 'vuex'
@@ -79,7 +78,6 @@ export default {
   components: {
     LineChart,
     BarChart,
-    TaskList,
     UserTable
   },
   data() {
