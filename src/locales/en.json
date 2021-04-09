@@ -15,6 +15,7 @@
     }
   },
   "sidebar": {
-    "movement": "Make Movement"
+    "movement": "Make Movement",
+    "dashboard": "Dashboard"
   }
 }
