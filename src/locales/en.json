@@ -16,7 +16,7 @@
       "somethingElse": "Something else"
     },
     "usersTable": {
-      "title": "Statement",
+      "title": "Movements",
       "columns": [
         "Name",
         "Value",
@@ -59,7 +59,7 @@
   },
   "sidebar": {
     "title": "Warren",
-    "shortTitle": "CT",
+    "movement": "Make Movement",
     "dashboard": "dashboard",
     "icons": "Icons",
     "maps": "Maps",
