@@ -10,6 +10,12 @@ To run this project you can run the following commands:
 
 > npm run install
 
+You can config the backend url in
+
+> src/config/index.js
+
+The default value is 'http://localhost:5050/api'
+
 To install all packages
 
 > npm run serve
