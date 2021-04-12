@@ -17,7 +17,7 @@ function postMovement(value, movementType) {
         body: JSON.stringify({value, movementType})
     };
 
-    return fetch(`${config.apiUrl}/movement`, requestOptions)
+    return fetch(`${config.apiUrl}/movements`, requestOptions)
         .then(handleResponse)
         .then(user => {
             return user;
