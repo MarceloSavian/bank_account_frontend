@@ -72,6 +72,7 @@ import * as chartConfigs from '@/components/Charts/config'
 import UserTable from './Dashboard/UserTable'
 import config from '@/config'
 import { mapActions } from 'vuex'
+import { currency } from '@/helpers/currency'
 
 export default {
   components: {
@@ -164,13 +165,12 @@ export default {
       this.balance = data.balance
     })
     this.getMovement().then((data) => {
-      console.log(data)
-      const array = data.map((e) => e.value)
+      const array = data.map((e) => e.balance)
       this.bigLineChart.allData = [array]
       const arrayGrid = data.map((e) => ({
-        value: e.value,
+        value: currency(e.value),
         name: e.movementType?.name,
-        type: e.movementType?.type
+        type: String(e.movementType?.type).toUpperCase()
       }))
       this.userTable.data = arrayGrid
       this.initBigChart(0)

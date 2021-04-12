@@ -9,21 +9,12 @@ import * as VeeValidate from 'vee-validate';
 import BlackDashboard from "./plugins/blackDashboard";
 import i18n from "./i18n"
 import './registerServiceWorker'
+import { currency } from "./helpers/currency";
 Vue.use(BlackDashboard);
 Vue.use(VueRouter);
 Vue.use(RouterPrefetch);
 Vue.use(VeeValidate)
-Vue.filter('toCurrency', function (value) {
-  if (typeof value !== "number") {
-      return value;
-  }
-  var formatter = new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      minimumFractionDigits: 0
-  });
-  return formatter.format(value);
-});
+Vue.filter('toCurrency', currency);
 
 new Vue({
   router,
